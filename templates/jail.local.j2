@@ -96,10 +96,12 @@ action = %({{ fail2ban_action }})s
 {% for service in fail2ban_services %}
 [{{ service.name }}]
 enabled   = {{ 'true' if service.enabled else 'false' }}
-port      = {{ service.port }}
 filter    = {{ service.filter }}
 logpath   = {{ service.logpath }}
 maxretry  = {{ service.maxretry }}
+{% if service.port is defined %}
+port  = {{ service.port }}
+{% endif %}
 {% if service.protocol is defined %}
 protocol  = {{ service.protocol }}
 {% endif %}
@@ -108,6 +110,9 @@ findtime  = {{ service.findtime }}
 {% endif %}
 {% if service.action is defined %}
 action    = %({{ service.action }})s
+{% endif %}
+{% if service.banaction is defined %}
+banaction = {{ service.banaction }}
 {% endif %}
 {% if service.banaction is defined %}
 banaction = {{ service.banaction }}
