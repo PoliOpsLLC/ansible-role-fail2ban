@@ -114,8 +114,8 @@ action    = %({{ service.action }})s
 {% if service.banaction is defined %}
 banaction = {{ service.banaction }}
 {% endif %}
-{% if service.banaction is defined %}
-banaction = {{ service.banaction }}
+{% if service.bantime is defined %}
+bantime = {{ service.bantime }}
 {% endif %}
 
 {% endfor %}
